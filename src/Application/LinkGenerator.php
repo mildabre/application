@@ -19,9 +19,9 @@ use Nette\Routing\Router;
 final class LinkGenerator
 {
 	public function __construct(
-		private Router $router,
-		private UrlScript $refUrl,
-		private ?IPresenterFactory $presenterFactory = null,
+		private readonly Router $router,
+		private readonly UrlScript $refUrl,
+		private readonly ?IPresenterFactory $presenterFactory = null,
 	) {
 	}
 

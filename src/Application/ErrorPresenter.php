@@ -20,7 +20,7 @@ use Tracy\ILogger;
 final class ErrorPresenter implements Application\IPresenter
 {
 	public function __construct(
-		private ?ILogger $logger = null,
+		private readonly ?ILogger $logger = null,
 	) {
 	}
 
