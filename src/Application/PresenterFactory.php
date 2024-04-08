@@ -82,7 +82,7 @@ class PresenterFactory implements IPresenterFactory
 	{
 		foreach ($mapping as $module => $mask) {
 			if (is_string($mask)) {
-				if (!preg_match('#^\\\\?([\w\\\\]*\\\\)?(\w*\*\w*?\\\\)?([\w\\\\]*\*\w*)$#D', $mask, $m)) {
+				if (!preg_match('#^\\\\?([\w\\\\]*\\\\)?(\w*\*\w*?\\\\)?([\w\\\\]*\*\*?\w*)$#D', $mask, $m)) {
 					throw new Nette\InvalidStateException("Invalid mapping mask '$mask'.");
 				}
 
@@ -113,7 +113,7 @@ class PresenterFactory implements IPresenterFactory
 			: $this->mapping['*'];
 
 		while ($part = array_shift($parts)) {
-			$mapping[0] .= str_replace('*', $part, $mapping[$parts ? 1 : 2]);
+			$mapping[0] .= str_replace(['**', '*'], ["$part\\$part", $part], $mapping[$parts ? 1 : 2]);
 		}
 
 		return $mapping[0];
